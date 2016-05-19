@@ -1,0 +1,17 @@
+<% include partials/header %>
+
+<div style="float:left;">
+   <% if(typeof first_name !== "undefined") { %>
+ <h2> Welcome,  <%= first_name %> ! </h2> <br>
+
+
+    This is as far as I got please have mercy on my soul.
+
+    <% } else { %>
+
+    User name or password not found try again <br>
+    <a href="/login">Login</a>
+    <% } %>
+</div>
+
+<% include partials/footer %>

@@ -1,0 +1,56 @@
+<% include partials/header.ejs %>
+
+<% if (typeof message !== 'undefined') { %>
+<div><%= message %></div>
+<% } %>
+
+<% if(rs.length > 0) { %>
+<h1>Edit Movie</h1>
+<form method="POST" action="/movie/update_movie">
+    <input type="hidden" name="movie_id" value="<%= rs[0].movie_id %>" />
+    Title <input type="text" id="title" name="title" value="<%= rs[0].movie_title%>" />
+    <br />
+    <br />
+    Tag Line</span> <textarea name="tagline"><%= rs[0].tagline %></textarea>
+    <br />
+    <br />
+
+    Genre(s)
+    <div style="margin-left:10px;">
+        <% for( var i = 0; i < genres.length; i++) { %>
+        <input type="checkbox"
+               name="genre_id"
+               id="genre_id"
+
+                <%
+                    /*
+                     * We can match the genre's the movie already has checked with the genre list
+                     * in the template, but we could also do the same thing in the controller.
+                     */
+
+                for (var j=0; j < rs.length; j++) {
+                if(genres[i].genre_id == rs[j].genre_id) { %>
+               checked
+
+                <% }
+                }
+                %>
+               value="<%= genres[i].genre_id %>"><%= genres[i].genre %> <br />
+        <% } %>
+    </div>
+
+
+    <button id="addBtn">Edit</button>
+</form>
+<% } else { %>
+No movie matches that ID.
+<% } %>
+
+
+
+
+
+
+
+
+<% include partials/footer.ejs %>
